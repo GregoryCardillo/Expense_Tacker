@@ -45,3 +45,36 @@ function addExpense(description, amount) {
       `${colors.green}Expense added successfully! (ID: ${newExpense.id})${colors.reset}`
     );
   }
+
+// Function to update a expense's description
+function updateExpense(id, newDescription) {
+  const expenses = readExpense();
+  const expense = expenses.find((expenses) => expenses.id === parseInt(id));
+
+  if (expense) {
+    expense.description = newDescription;
+    writeExpense(expense);
+    console.log(
+      `${colors.green}Expense ID ${id} updated successfully!${colors.reset}`
+    );
+  } else {
+    console.log(`${colors.red}Expense with ID ${id} not found.${colors.reset}`);
+  }
+}
+
+// Function to delete a expense
+function deleteExpense(id) {
+    const expenses = readExpenses();
+    const newExpenses = expenses.filter((expense) => expense.id !== parseInt(id));
+  
+    if (newExpenses.length < expenses.length) {
+      writeExpenses(newExpenses);
+      console.log(
+        `${colors.green}Expense ID ${id} deleted successfully!${colors.reset}`
+      );
+    } else {
+      console.log(`${colors.red}Expense with ID ${id} not found.${colors.reset}`);
+    }
+  }
+
+  
